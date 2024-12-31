@@ -2,6 +2,7 @@
 #include "pros/motors.hpp"
 #include <cmath>
 
+int currState = 0;
 const int numStates = 3;
 int states[numStates] = {0, 50, 450};
 int target = 0;

@@ -1,4 +1,4 @@
 void nextState();
 void liftControl();
 
-int currState = 0;
+extern int currState;
