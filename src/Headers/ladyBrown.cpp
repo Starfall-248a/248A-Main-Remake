@@ -3,12 +3,15 @@
 #include <cmath>
 
 int currState = 0;
-const int numStates = 3;
-int states[numStates] = {0, 50, 450};
+const int numStates = 4;
+int states[numStates] = {0, 400, 1200, 1800};
 int target = 0;
 
 void nextState() {
     currState += 1;
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && currState == 2) {
+        currState += 1; // Skip the 1200-degree state
+    }
     if (currState == numStates) {
         currState = 0;
     }
@@ -16,7 +19,7 @@ void nextState() {
 }
 
 void liftControl() {
-    double kp = 1.4;
+    double kp = .4;
     double error = target - LB.get_position();
     double velocity = kp * error;
     LB.move(velocity);

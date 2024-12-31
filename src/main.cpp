@@ -42,10 +42,8 @@ void autonomous() {
 
 void opcontrol() {
 	console.clear();
-	planet.focus();
+	planet.focus(); 
 	console.println("Driving...");
-	underglow.flow(0xFF0000, 0x00FF00);
-	TimeLED.flow(0xFF0000, 0x00FF00);
 	pros::Task Flasher(ledTime, "LED time");
 	while (true) {
 		// get left y and right x positions

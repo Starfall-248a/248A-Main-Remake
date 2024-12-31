@@ -176,25 +176,5 @@ void rushBlue(){
 
 void skills(){
     chassis.setPose(-60.5, 0, 90);
-    hooks.move(127);
-    pros::delay(750);
-    preroller.move(127);
-    chassis.moveToPoint(-49, 0, 1250);
-    chassis.turnToPoint(-49, -50, 1250);
-    chassis.moveToPoint(-49, 16, 1750, {.forwards = false, .maxSpeed = 70}, false);
-    Clamp.set_value(HIGH);
-    pros::delay(100);
-    chassis.follow(SkillsP1_txt, 10, 20000);
-    chassis.turnToPoint(-55.828, 61.431, 750, {.forwards = false}, false);
-    Clamp.set_value(LOW);
-    chassis.moveToPoint(-55.828, 61.431, 750, {.forwards = false, .maxSpeed = 70}, false);
-    chassis.moveToPose(-49, -15, 0, 5000);
-    chassis.follow(SkillsP2_txt, 10, 20000);
-    chassis.turnToPoint(-55.828, -61.431, 750, {.forwards = false}, false);
-    Clamp.set_value(LOW);
-    chassis.moveToPoint(-55.828, -61.431, 750, {.forwards = false, .maxSpeed = 70}, false);
-    hooks.brake();
-    chassis.moveToPoint(0, -59, 2000, {.earlyExitRange = 5});
-    chassis.moveToPose(47.133, -6.042, 180, 3000, {.lead = .55}, false);
-    Clamp.set_value(HIGH);
+    hooks.move_relative(150, 600);
 }

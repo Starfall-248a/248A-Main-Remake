@@ -20,16 +20,15 @@ Controller controller(E_CONTROLLER_MASTER);
 MotorGroup driveLeft({20, -19, 18}, pros::MotorGearset::blue); // left motors on ports 20, 19, 18
 MotorGroup driveRight({-17, 16, -15}, pros::MotorGearset::blue); // right motors on ports 17, 16, 15
 
-Motor LB(6, pros::MotorGearset::green); // arm motor on port 6
-Motor hooks(7, pros::MotorGearset::blue); // right intake motor on port 10
+Motor LB(-2, pros::MotorGearset::green); // arm motor on port 6
+Motor hooks(-7, pros::MotorGearset::blue); // right intake motor on port 10
 Motor preroller(-13, pros::MotorGearset::green); // right intake motor on port 4
 MotorGroup intake({7, -13}, pros::MotorGearset::blue); // intake motors on ports 9, 4
 
-Imu imu(11);
+Imu imu(12);
 
 Rotation latRot(-8);
 Rotation angRot(-13);
-Rotation armAngle(4);
 
 adi::Pneumatics Clamp(1, LOW);
 adi::Pneumatics inLift(2, LOW);

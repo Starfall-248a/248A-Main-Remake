@@ -31,7 +31,6 @@ extern adi::Pneumatics inLift;
 
 extern Rotation latRot;
 extern Rotation angRot;
-extern Rotation armAngle;
 
 extern Drivetrain drivetrain;
 

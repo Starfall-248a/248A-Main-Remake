@@ -66,11 +66,14 @@ void setLifter() {
 }
 
 void setLB(){
-   if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
-			nextState();
-		}
-    else if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
-      currState = 1;
+  if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2)) {
+    nextState();
+  } else if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
+    currState = 2;
+    target = states[currState];
+  } else if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+    currState = 1;
+    target = states[currState];
   }
 }
 
