@@ -59,6 +59,7 @@ void opcontrol() {
 		setLifter();
 		setIntakes();
 		setClamp();
+		setLB();
 		
 		pros::delay(10);          // Run for 10 ms then update
 	}
