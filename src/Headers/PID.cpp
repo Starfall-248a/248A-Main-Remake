@@ -9,7 +9,7 @@ lemlib::ControllerSettings lateral_controller(10, // proportional gain (kP)
                                               100, // small error range timeout, in milliseconds
                                               3, // large error range, in inches
                                               500, // large error range timeout, in milliseconds
-                                              10 // maximum acceleration (slew)
+                                              5 // maximum acceleration (slew)
 );
 
 // angular PID controller

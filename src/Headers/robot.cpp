@@ -23,7 +23,7 @@ MotorGroup driveRight({-17, 16, -15}, pros::MotorGearset::blue); // right motors
 Motor LB(-2, pros::MotorGearset::green); // arm motor on port 6
 Motor hooks(-7, pros::MotorGearset::blue); // right intake motor on port 10
 Motor preroller(-13, pros::MotorGearset::green); // right intake motor on port 4
-MotorGroup intake({7, -13}, pros::MotorGearset::blue); // intake motors on ports 9, 4
+MotorGroup intake({-7, -13}, pros::MotorGearset::blue); // intake motors on ports 9, 4
 
 Imu imu(12);
 
@@ -43,9 +43,9 @@ Drivetrain drivetrain(&driveLeft, // left motor group
 );
 
 // horizontal tracking wheel
-TrackingWheel horizontal_tracking_wheel(&angRot, lemlib::Omniwheel::NEW_2, 2);
+TrackingWheel horizontal_tracking_wheel(&angRot, 2.125, 2);
 // vertical tracking wheel
-TrackingWheel vertical_tracking_wheel(&latRot, lemlib::Omniwheel::NEW_2, 1);
+TrackingWheel vertical_tracking_wheel(&latRot, 2.125, 1);
 
 OdomSensors sensors(&vertical_tracking_wheel, // vertical tracking wheel 1, set to null
                         nullptr, // vertical tracking wheel 2, set to nullptr as we are using IMEs

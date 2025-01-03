@@ -2,6 +2,7 @@
 #include "robodash/api.h"
 
 rd::Selector Match_autos({
+	{"Skills", &skills},
 	{"Red Solo Winpoint", &redSoloWP},
 	{"Blue Solo Winpoint", &blueSoloWP},
 	{"Red five ring", &fourRingRed},
@@ -10,7 +11,7 @@ rd::Selector Match_autos({
 	{"Blue rush", &rushBlue},
 	{"Red disrupt", &disruptRed},
 	{"Blue disrupt", &disruptBlue},
-	{"Skills", &skills},
+	
 });
 
 rd::Image planet("Planet.bin", "Planet");
