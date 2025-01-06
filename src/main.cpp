@@ -24,6 +24,18 @@ void initialize() {
 	ledManager.initialize(); // initialize the LED manager
 	ledManager.flow(0x421C52, 0x732C7B);
 	pros::Task liftControlTask(LBTask, "LB Task");
+	pros::Task screenTask([&]() {
+        lemlib::Pose pose(0, 0, 0);
+        while (true) {
+            // print robot location to the brain screen
+            console.printf("X: %f", chassis.getPose().x); // x
+            console.printf("Y: %f", chassis.getPose().y); // y
+            console.printf("Theta: %f", chassis.getPose().theta); // heading
+            // delay to save resources
+            pros::delay(50);
+			console.clear();
+        }
+    });
 }
 
 void disabled() {
@@ -36,7 +48,7 @@ void competition_initialize() {
 
 void autonomous() {
 	console.println("Running auton...");
-	goof.focus();
+	console.focus();
 	Match_autos.run_auton();
 	
 }

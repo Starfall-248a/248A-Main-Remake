@@ -105,4 +105,6 @@ void ledTime() {
   TimeLED.off();
   driverClock.waitUntil(18 * 1000);
   TimeLED.setColor(0xE5195E);
+  driverClock.waitUntil(.2 * 1000);
+  Clamp.set_value(LOW);
 }

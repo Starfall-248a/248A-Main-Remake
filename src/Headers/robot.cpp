@@ -27,6 +27,8 @@ MotorGroup intake({-7, -13}, pros::MotorGearset::blue); // intake motors on port
 
 Imu imu(12);
 
+Distance localizer(3);
+
 Rotation latRot(-8);
 Rotation angRot(-13);
 

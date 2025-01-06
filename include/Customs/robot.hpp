@@ -8,6 +8,7 @@
 #include "pros/gps.hpp"
 #include "stormlib/api.hpp"
 #include "robodash/api.h"
+#include "pros/distance.hpp"
 
 using namespace pros;
 using namespace lemlib;
@@ -25,6 +26,7 @@ extern Motor LB;
 
 extern Imu imu;
 extern Optical colorSort;
+extern Distance localizer;
 
 extern adi::Pneumatics Clamp;
 extern adi::Pneumatics inLift;
