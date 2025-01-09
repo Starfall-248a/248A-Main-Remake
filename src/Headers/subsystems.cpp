@@ -7,6 +7,8 @@ int wallMech = 0;
 static bool toggle{false};
 static bool inLifter{false};
 bool toggleSorter{true};
+int startTime;
+bool isJamHandled = true;
 
 // void colorSorter(){
 //   while (colorSort.get_hue() >= 0 && colorSort.get_hue() <= 30 && blueSide || colorSort.get_hue() >= 300 && colorSort.get_hue() <= 360 && !blueSide) {
@@ -38,6 +40,42 @@ void setIntakes() {
     } else {
       hooks.move_velocity(0);
       preroller.move_velocity(0);
+    }
+  }
+
+
+  void controlIntake() {
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)) {
+        startTime = pros::millis();
+    }
+    int currentIntakeVelocity = hooks.get_actual_velocity();
+    // When R1 is pressed, run the intake forward
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+        // If the motor is powered but hasn't moved within the first 500ms, reverse briefly
+        if (currentIntakeVelocity == 0 && !isJamHandled && pros::millis() - startTime > 300){
+            // Reverse the motor briefly to un-jam
+            hooks.move(-127);
+            preroller.move(-127);
+            pros::delay(250); // Reverse for 0.25 seconds
+            hooks.move(127);
+            preroller.move(127);
+            isJamHandled = true; // Jam handling is done, don't trigger again
+        } else {
+            // Normal operation for forward intake
+            hooks.move(127);
+            preroller.move(127);
+            isJamHandled = false; // Reset jam handling flag
+        }
+    }
+    // When L1 is pressed, run the intake backward
+    else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+        hooks.move(-127);
+        preroller.move(-127);
+    }
+    // Otherwise, stop the intake and preroller
+    else {
+        hooks.brake();
+        preroller.brake();
     }
   }
 
