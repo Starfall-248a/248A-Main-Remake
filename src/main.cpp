@@ -2,7 +2,6 @@
 #include "robodash/api.h"
 
 rd::Selector Match_autos({
-	{"Skills", &skills},
 	{"Red Solo Winpoint", &redSoloWP},
 	{"Blue Solo Winpoint", &blueSoloWP},
 	{"Red five ring", &fourRingRed},
@@ -11,7 +10,7 @@ rd::Selector Match_autos({
 	{"Blue rush", &rushBlue},
 	{"Red disrupt", &disruptRed},
 	{"Blue disrupt", &disruptBlue},
-	
+	{"Skills", &skills},
 });
 
 rd::Image planet("Planet.bin", "Planet");
@@ -23,6 +22,7 @@ void initialize() {
 	chassis.calibrate(); // calibrate sensors
 	ledManager.initialize(); // initialize the LED manager
 	ledManager.flow(0x421C52, 0x732C7B);
+	detectSorter();
 	pros::Task liftControlTask(LBTask, "LB Task");
 	pros::Task screenTask([&]() {
         lemlib::Pose pose(0, 0, 0);
@@ -71,6 +71,7 @@ void opcontrol() {
 		setIntakes();
 		setClamp();
 		setLB();
+		
 		
 		pros::delay(10);          // Run for 10 ms then update
 	}

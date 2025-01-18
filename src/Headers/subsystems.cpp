@@ -2,6 +2,7 @@
 #include "pros/adi.hpp"
 #include "pros/misc.h"
 #include "pros/misc.hpp"
+#include "pros/rtos.hpp"
 
 int wallMech = 0;
 static bool toggle{false};
@@ -30,19 +31,40 @@ bool isJamHandled = true;
 //   }
 // }
 
+// void setIntakes() {
+//     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+//       hooks.move_velocity(600);
+//       preroller.move_velocity(200);
+//     } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+//       hooks.move_velocity(-600);
+//       preroller.move_velocity(-200);
+//     } else {
+//       hooks.move_velocity(0);
+//       preroller.move_velocity(0);
+//     }
+//   }
+
 void setIntakes() {
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      hooks.move_velocity(600);
-      preroller.move_velocity(200);
-    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-      hooks.move_velocity(-600);
-      preroller.move_velocity(-200);
-    } else {
-      hooks.move_velocity(0);
-      preroller.move_velocity(0);
-    }
-  }
+        hooks.move_velocity(600);
+        preroller.move_velocity(200);
 
+        // Check the color sensor based on the boolean value
+        int hue = sorter.get_hue();
+        if ((!blueSide && (hue >= 215 && hue <= 240)) || (blueSide && (hue >= 0 && hue <= 20))) {
+            
+            hooks.move_velocity(-600); // Reverse the intake motor if the color matches
+            }
+        
+
+    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+        hooks.move_velocity(-600);
+        preroller.move_velocity(-200);
+    } else {
+        hooks.move_velocity(0);
+        preroller.move_velocity(0);
+    }
+}
 
   void controlIntake() {
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)) {
@@ -80,13 +102,20 @@ void setIntakes() {
   }
 
 void setClamp() {
+  // if (controller.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)) {
+  //   if (!toggle) {
+  //     Clamp.set_value(true);
+  //     toggle = !toggle;
+  //   } else {
+  //     Clamp.set_value(false);
+  //     toggle = !toggle;
+  //   }
+  // }
   if (controller.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)) {
-    if (!toggle) {
-      Clamp.set_value(true);
-      toggle = !toggle;
+    if (Clamp.get_value() == LOW) {
+      Clamp.set_value(HIGH);
     } else {
-      Clamp.set_value(false);
-      toggle = !toggle;
+      Clamp.set_value(LOW);
     }
   }
 }

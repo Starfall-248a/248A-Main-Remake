@@ -25,8 +25,10 @@ extern MotorGroup intake;
 extern Motor LB;
 
 extern Imu imu;
-extern Optical colorSort;
-extern Distance localizer;
+extern Optical sorter;
+extern Distance localizerL;
+extern Distance clamper;
+extern Optical reader;
 
 extern adi::Pneumatics Clamp;
 extern adi::Pneumatics inLift;

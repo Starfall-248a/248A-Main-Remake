@@ -24,49 +24,110 @@ void moveRelative(float distance, float maxSpeed, int timeout) {
 };
 
 void redSoloWP(){
-    chassis.setPose(-60, -13.25, 323);
-    currState = 2;
-    pros::delay(1250);
-    chassis.moveToPoint(-43.687, -36.394, 1750);
-    chassis.turnToPoint(-23.5, -23.5, 750);
-    chassis.moveToPoint(-23.5, -23.5, 1500, {.forwards = false, .maxSpeed = 60}, false);
+    chassis.setPose(-50.5, 26, 252);
+    chassis.moveToPoint(-9, 40.5, 2000);
+    preroller.move(127);
+    chassis.moveToPoint(-23.5, 23.5, 1000, {.forwards = false, .maxSpeed = 60}, false);
     Clamp.set_value(HIGH);
+    preroller.move(0);
+    pros::Task sorting(autoIntake, "Intake function");
+    chassis.moveToPoint(-23.5, 47.5, 1250);
+    chassis.turnToPoint(-8.5, 50, 750);
+    chassis.moveToPoint(-8.5, 50, 1250, {.maxSpeed = 75}, false);
+    pros::delay(750);
+    chassis.moveToPoint(-23.5, 47.5, 1250, {.forwards = false, .maxSpeed = 75});
 }
 
 void blueSoloWP(){
+    
+}
+
+void threeTopRed(){
     blueSide = true;
-    //grab first goal
-    chassis.setPose(48.912,-36.043,115);
-    chassis.moveToPoint(29.665, -26.604, 2000, { .forwards = false, .maxSpeed = 75}, false);
-    Clamp.set_value(HIGH);
-    intake.move(127);
-    pros::delay(100);
-    //grab 1st ring
-    chassis.turnToPoint(21, -49, 1500);
-    chassis.moveToPoint(21, -49, 2000, {}, false);
-    pros::delay(1750);
-    //go to alliance stake 2 stack
-    chassis.turnToPoint(48, 4, 1250, {}, false);
-    Clamp.set_value(LOW);
-    chassis.moveToPoint(48, 4, 2250);
-    hooks.brake();
-    chassis.waitUntil(10);
-    preroller.move_velocity(200);
-    inLift.set_value(HIGH);
-    chassis.waitUntilDone();
-    inLift.set_value(LOW);
-    //sort out blue ring
-    chassis.turnToPoint(25.187, 21.741, 1000, {.forwards = false});
-    chassis.waitUntil(15);
-    chassis.moveToPoint(25.187, 21.741, 1500, {.forwards = false, .maxSpeed = 65}, false);
-    chassis.waitUntil(5);
-    Clamp.set_value(HIGH);
-    pros::delay(100);
+    chassis.setPose(-51, -59, 270);
+    //starting position
+    currState = 1;
+    target = states[currState];
     hooks.move(127);
-    chassis.turnToPoint(19, 5.5, 1000);
-    chassis.moveToPoint(19, 5.5, 1500, {.maxSpeed = 50});
-    chassis.waitUntil(5);
-    intake.brake();
+    chassis.moveToPoint(-21.5, -59, 1750, {.forwards = false, .maxSpeed = 75});
+    chassis.waitUntil(15);
+    hooks.brake();
+    currState = 2;
+    target = states[currState];
+    chassis.turnToPoint(-7.5, -51, 750, {.forwards = false});
+    chassis.moveToPoint(-7.5, -51, 750, {.forwards = false, .maxSpeed = 60}, false);
+    //grab mid goal
+    Clamp.set_value(HIGH);
+    pros::Task sorting(autoIntake, "Intake function");
+    pros::delay(200);
+    chassis.turnToPoint(-23.5, -47.5, 750);
+    chassis.moveToPoint(-23.5, -47.5, 750, {.maxSpeed = 75}, false);
+    chassis.turnToPoint(-10.5, -60, 1000);
+    chassis.moveToPoint(-10.5, -60, 1250, {}, false);
+    sorting.suspend();
+    //score wall stake
+    currState = 3;
+    target = states[currState];
+    pros::delay(750);
+    chassis.moveToPose(-23.5, -47.5, 270, 1000, {.forwards = false, .maxSpeed = 75});
+    currState = 0;
+    target = states[currState];
+    Clamp.set_value(LOW);
+    chassis.turnToPoint(-23.5, -23.5, 750, {.forwards = false});
+    chassis.moveToPoint(-23.5, -23.5, 750, {.forwards = false, .maxSpeed = 60}, false);
+    Clamp.set_value(HIGH);
+    chassis.turnToPoint(-47.5, 0, 1000, {}, false);
+    //resume sorting task
+    sorting.resume();
+    inLift.set_value(HIGH);
+    chassis.moveToPoint(-47.5, 0, 750, {.maxSpeed = 75}, false);
+    inLift.set_value(LOW);
+    moveRelative(-15, 75, 1250);
+    chassis.moveToPoint(-23.5, 0, 1250);
+}
+
+void threeTopBlue(){
+    blueSide = true;
+    chassis.setPose(51, -59, 90);
+    //starting position
+    currState = 1;
+    target = states[currState];
+    hooks.move(127);
+    chassis.moveToPoint(21.5, -59, 1750, {.forwards = false, .maxSpeed = 75});
+    chassis.waitUntil(15);
+    hooks.brake();
+    currState = 2;
+    target = states[currState];
+    chassis.turnToPoint(7.5, -51, 750, {.forwards = false});
+    chassis.moveToPoint(7.5, -51, 750, {.forwards = false, .maxSpeed = 60}, false);
+    //grab mid goal
+    Clamp.set_value(HIGH);
+    pros::Task sorting(autoIntake, "Intake function");
+    pros::delay(200);
+    chassis.turnToPoint(23.5, -47.5, 750);
+    chassis.moveToPoint(23.5, -47.5, 750, {.maxSpeed = 75}, false);
+    chassis.turnToPoint(10.5, -60, 1000);
+    chassis.moveToPoint(10.5, -60, 1250, {}, false);
+    sorting.suspend();
+    //score wall stake
+    currState = 3;
+    target = states[currState];
+    pros::delay(750);
+    chassis.moveToPose(23.5, -47.5, 270, 1000, {.forwards = false, .maxSpeed = 75});
+    currState = 0;
+    target = states[currState];
+    Clamp.set_value(LOW);
+    chassis.turnToPoint(23.5, -23.5, 750, {.forwards = false});
+    chassis.moveToPoint(23.5, -23.5, 750, {.forwards = false, .maxSpeed = 60}, false);
+    Clamp.set_value(HIGH);
+    chassis.turnToPoint(47.5, 0, 1000, {}, false);
+    //resume sorting task
+    sorting.resume();
+    inLift.set_value(HIGH);
+    chassis.moveToPoint(47.5, 0, 750, {.maxSpeed = 75}, false);
+    inLift.set_value(LOW);
+    moveRelative(-15, 75, 1250);
+    chassis.moveToPoint(23.5, 0, 1250);
 }
 
 void fourRingRed(){
@@ -225,7 +286,7 @@ void skills(){
     //2nd half
 
     chassis.moveToPose(-53, -23.5, 0, 3500, {.forwards = false, .maxSpeed = 75}, false);
-    chassis.setPose(-1 * localizer.get_distance() / 25.4 - 26.25, chassis.getPose().y, 0);
+    chassis.setPose(-1 * localizerL.get_distance() / 25.4 - 26.25, chassis.getPose().y, 0);
     Clamp.set_value(HIGH);
     intake.move(127);
     chassis.turnToPoint(-23.5, -20, 1000);

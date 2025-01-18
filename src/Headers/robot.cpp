@@ -27,13 +27,16 @@ MotorGroup intake({-7, -13}, pros::MotorGearset::blue); // intake motors on port
 
 Imu imu(12);
 
-Distance localizer(3);
+Distance clamper(5);
+Distance localizerL(3);
+Optical sorter(6);
+Optical reader(4);
 
 Rotation latRot(-8);
 Rotation angRot(-13);
 
-adi::Pneumatics Clamp(1, LOW);
-adi::Pneumatics inLift(2, LOW);
+adi::Pneumatics Clamp('a', LOW);
+adi::Pneumatics inLift('b', LOW);
 
 // drivetrain settings
 Drivetrain drivetrain(&driveLeft, // left motor group
