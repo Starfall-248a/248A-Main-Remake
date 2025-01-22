@@ -50,11 +50,11 @@ void setIntakes() {
         preroller.move_velocity(200);
 
         // Check the color sensor based on the boolean value
-        int hue = sorter.get_hue();
-        if ((!blueSide && (hue >= 215 && hue <= 240)) || (blueSide && (hue >= 0 && hue <= 20))) {
+        // int hue = sorter.get_hue();
+        // if ((!blueSide && (hue >= 215 && hue <= 240)) || (blueSide && (hue >= 0 && hue <= 20))) {
             
-            hooks.move_velocity(-600); // Reverse the intake motor if the color matches
-            }
+        //     hooks.move_velocity(-600); // Reverse the intake motor if the color matches
+        //     }
         
 
     } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {

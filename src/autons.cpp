@@ -23,111 +23,122 @@ void moveRelative(float distance, float maxSpeed, int timeout) {
     }
 };
 
-void redSoloWP(){
-    chassis.setPose(-50.5, 26, 252);
-    chassis.moveToPoint(-9, 40.5, 2000);
-    preroller.move(127);
-    chassis.moveToPoint(-23.5, 23.5, 1000, {.forwards = false, .maxSpeed = 60}, false);
+void redHighNeg(){
+    chassis.setPose(-49.235, 36.683, 297);
+    chassis.moveToPoint(-23.5, 23.5, 1050, {.forwards = false, .maxSpeed = 60}, false);
     Clamp.set_value(HIGH);
+    pros::delay(150);
+    pros::Task intake(intakeTask, "Intake function");
+    chassis.turnToPoint(-23.5, 47.5, 1000);
+    chassis.moveToPoint(-23.5, 51, 1000);
+    chassis.turnToPoint(-10, 56, 1000);
+    chassis.moveToPoint(-10, 56, 1250, {.maxSpeed = 75});
+    chassis.moveToPoint(-17.25, 44.5, 1100, {.forwards = false, .maxSpeed = 75, .minSpeed = 60, .earlyExitRange = 2});
+    chassis.turnToPoint(-10, 43.5, 1000, {.minSpeed = 60, .earlyExitRange = 3});
+    chassis.moveToPoint(-17, 43.5, 1000, {.maxSpeed = 75});
+    pros::delay(100);
+    chassis.moveToPoint(-9, 43.5, 1500, {.maxSpeed = 75});
+    chassis.moveToPoint(-45, 43.5, 3500, {.forwards = false, .maxSpeed = 100, .minSpeed = 60, .earlyExitRange = 5});
+    chassis.turnToPoint(-47, 0, 1200);
+    chassis.moveToPoint(-47, 0, 1500, {.maxSpeed = 60});
+    chassis.waitUntil(15);
+    inLift.set_value(HIGH);
+    chassis.waitUntilDone();
+    inLift.set_value(LOW);
+    pros::delay(250);
+    moveRelative(15, 70, 2000); // Negate the x-coordinate for relative movement
+    chassis.moveToPose(-23.5, 5, 180, 3500);
+}
+
+void blueHighNeg(){
+    chassis.setPose(49.235, 36.683, 63);
+    chassis.moveToPoint(23.5, 23.5, 1050, {.forwards = false, .maxSpeed = 60}, false);
+    Clamp.set_value(HIGH);
+    pros::delay(150);
+    pros::Task intake(intakeTask, "Intake function");
+    chassis.turnToPoint(23.5, 47.5, 1000);
+    chassis.moveToPoint(23.5, 51, 1000);
+    chassis.turnToPoint(10, 56, 1000);
+    chassis.moveToPoint(10, 56, 1250, {.maxSpeed = 75});
+    chassis.moveToPoint(17.25, 44.5, 1100, {.forwards = false, .maxSpeed = 75, .minSpeed = 60, .earlyExitRange = 2});
+    chassis.turnToPoint(10, 43.5, 1000, {.minSpeed = 60, .earlyExitRange = 3});
+    chassis.moveToPoint(17, 43.5, 1000, {.maxSpeed = 75});
+    pros::delay(100);
+    chassis.moveToPoint(9, 43.5, 1500, {.maxSpeed = 75});
+    chassis.moveToPoint(45, 43.5, 3500, {.forwards = false, .maxSpeed = 100, .minSpeed = 60, .earlyExitRange = 5});
+    chassis.turnToPoint(47, 0, 1200);
+    chassis.moveToPoint(47, 0, 1500, {.maxSpeed = 60});
+    chassis.waitUntil(15);
+    inLift.set_value(HIGH);
+    chassis.waitUntilDone();
+    inLift.set_value(LOW);
+    pros::delay(250);
+    moveRelative(-15, 70, 2000);
+    chassis.moveToPose(23.5, 5, 180, 3500);
+}
+
+void twoTopRed(){
+    chassis.setPose(-58.5, 10, 0);
+    chassis.moveToPoint(-58.5, -3, 750, {.maxSpeed = 45});
+    chassis.moveToPoint(-58.5, 0, 750, {.maxSpeed = 45});
+    chassis.turnToHeading(270, 750, {}, false);
+    pros::delay(100);
+    currState = 4;
+    target = states[currState];
+    pros::delay(50);
+    chassis.moveToPoint(-61, 0, 850, {.maxSpeed = 50}, false);
+    currState = 0;
+    target = states[currState];
+    moveRelative(3, 50, 750);
+    chassis.turnToPoint(-23.5, 23.5, 1000, {.forwards = false, .maxSpeed = 75});
+    chassis.moveToPoint(-23.5, 23.5, 1275, {.forwards = false, .maxSpeed = 70}, false);
+    Clamp.set_value(HIGH);
+    pros::delay(200);
+    chassis.turnToPoint(-23.5, 47.5, 1250);
     preroller.move(0);
-    pros::Task sorting(autoIntake, "Intake function");
-    chassis.moveToPoint(-23.5, 47.5, 1250);
-    chassis.turnToPoint(-8.5, 50, 750);
-    chassis.moveToPoint(-8.5, 50, 1250, {.maxSpeed = 75}, false);
-    pros::delay(750);
-    chassis.moveToPoint(-23.5, 47.5, 1250, {.forwards = false, .maxSpeed = 75});
+    pros::Task intake(intakeTask, "Intake function");
+    chassis.moveToPoint(-23.5, 51, 1000);
+    chassis.turnToPoint(-10, 54, 1000);
+    chassis.moveToPoint(-10, 54, 1250, {.maxSpeed = 75});
+    chassis.moveToPoint(-17.25, 44.5, 1100, {.forwards = false, .maxSpeed = 75, .minSpeed = 60, .earlyExitRange = 2});
+    chassis.turnToPoint(-10, 43.5, 1000, {.minSpeed = 60, .earlyExitRange = 3});
+    chassis.moveToPoint(-17, 43.5, 1000, {.maxSpeed = 75});
+    pros::delay(100);
+    chassis.moveToPoint(-7, 43.5, 1500, {.maxSpeed = 75});
+    chassis.moveToPoint(-30, 43.5, 1000, {.forwards = false, .maxSpeed = 75, .minSpeed = 70, .earlyExitRange = 2});
+    chassis.moveToPoint(-23.5, 0, 1200);
 }
 
-void blueSoloWP(){
-    
-}
-
-void threeTopRed(){
-    blueSide = true;
-    chassis.setPose(-51, -59, 270);
-    //starting position
-    currState = 1;
+void twoTopBlue(){
+    chassis.setPose(58.5, 10,180);
+    chassis.moveToPoint(58.5, -3, 750, {.maxSpeed = 45});
+    chassis.moveToPoint(58.5, 0, 750, {.maxSpeed = 45});
+    chassis.turnToHeading(90, 750, {}, false);
+    pros::delay(100);
+    currState = 4;
     target = states[currState];
-    hooks.move(127);
-    chassis.moveToPoint(-21.5, -59, 1750, {.forwards = false, .maxSpeed = 75});
-    chassis.waitUntil(15);
-    hooks.brake();
-    currState = 2;
-    target = states[currState];
-    chassis.turnToPoint(-7.5, -51, 750, {.forwards = false});
-    chassis.moveToPoint(-7.5, -51, 750, {.forwards = false, .maxSpeed = 60}, false);
-    //grab mid goal
-    Clamp.set_value(HIGH);
-    pros::Task sorting(autoIntake, "Intake function");
-    pros::delay(200);
-    chassis.turnToPoint(-23.5, -47.5, 750);
-    chassis.moveToPoint(-23.5, -47.5, 750, {.maxSpeed = 75}, false);
-    chassis.turnToPoint(-10.5, -60, 1000);
-    chassis.moveToPoint(-10.5, -60, 1250, {}, false);
-    sorting.suspend();
-    //score wall stake
-    currState = 3;
-    target = states[currState];
-    pros::delay(750);
-    chassis.moveToPose(-23.5, -47.5, 270, 1000, {.forwards = false, .maxSpeed = 75});
+    pros::delay(50);
+    chassis.moveToPoint(61, 0, 850, {.maxSpeed = 50}, false);
     currState = 0;
     target = states[currState];
-    Clamp.set_value(LOW);
-    chassis.turnToPoint(-23.5, -23.5, 750, {.forwards = false});
-    chassis.moveToPoint(-23.5, -23.5, 750, {.forwards = false, .maxSpeed = 60}, false);
+    moveRelative(-3, 50, 750);
+    chassis.turnToPoint(23.5, 23.5, 1000, {.forwards = false, .maxSpeed = 75});
+    chassis.moveToPoint(23.5, 23.5, 1275, {.forwards = false, .maxSpeed = 70}, false);
     Clamp.set_value(HIGH);
-    chassis.turnToPoint(-47.5, 0, 1000, {}, false);
-    //resume sorting task
-    sorting.resume();
-    inLift.set_value(HIGH);
-    chassis.moveToPoint(-47.5, 0, 750, {.maxSpeed = 75}, false);
-    inLift.set_value(LOW);
-    moveRelative(-15, 75, 1250);
-    chassis.moveToPoint(-23.5, 0, 1250);
-}
-
-void threeTopBlue(){
-    blueSide = true;
-    chassis.setPose(51, -59, 90);
-    //starting position
-    currState = 1;
-    target = states[currState];
-    hooks.move(127);
-    chassis.moveToPoint(21.5, -59, 1750, {.forwards = false, .maxSpeed = 75});
-    chassis.waitUntil(15);
-    hooks.brake();
-    currState = 2;
-    target = states[currState];
-    chassis.turnToPoint(7.5, -51, 750, {.forwards = false});
-    chassis.moveToPoint(7.5, -51, 750, {.forwards = false, .maxSpeed = 60}, false);
-    //grab mid goal
-    Clamp.set_value(HIGH);
-    pros::Task sorting(autoIntake, "Intake function");
     pros::delay(200);
-    chassis.turnToPoint(23.5, -47.5, 750);
-    chassis.moveToPoint(23.5, -47.5, 750, {.maxSpeed = 75}, false);
-    chassis.turnToPoint(10.5, -60, 1000);
-    chassis.moveToPoint(10.5, -60, 1250, {}, false);
-    sorting.suspend();
-    //score wall stake
-    currState = 3;
-    target = states[currState];
-    pros::delay(750);
-    chassis.moveToPose(23.5, -47.5, 270, 1000, {.forwards = false, .maxSpeed = 75});
-    currState = 0;
-    target = states[currState];
-    Clamp.set_value(LOW);
-    chassis.turnToPoint(23.5, -23.5, 750, {.forwards = false});
-    chassis.moveToPoint(23.5, -23.5, 750, {.forwards = false, .maxSpeed = 60}, false);
-    Clamp.set_value(HIGH);
-    chassis.turnToPoint(47.5, 0, 1000, {}, false);
-    //resume sorting task
-    sorting.resume();
-    inLift.set_value(HIGH);
-    chassis.moveToPoint(47.5, 0, 750, {.maxSpeed = 75}, false);
-    inLift.set_value(LOW);
-    moveRelative(-15, 75, 1250);
-    chassis.moveToPoint(23.5, 0, 1250);
+    chassis.turnToPoint(23.5, 47.5, 1250);
+    preroller.move(0);
+    pros::Task intake(intakeTask, "Intake function");
+    chassis.moveToPoint(23.5, 51, 1000);
+    chassis.turnToPoint(10, 54, 1000);
+    chassis.moveToPoint(10, 54, 1250, {.maxSpeed = 75});
+    chassis.moveToPoint(17.25, 44.5, 1100, {.forwards = false, .maxSpeed = 75, .minSpeed = 60, .earlyExitRange = 2});
+    chassis.turnToPoint(10, 43.5, 1000, {.minSpeed = 60, .earlyExitRange = 3});
+    chassis.moveToPoint(17, 43.5, 1000, {.maxSpeed = 75});
+    pros::delay(100);
+    chassis.moveToPoint(7, 43.5, 1500, {.maxSpeed = 75});
+    chassis.moveToPoint(30, 43.5, 1000, {.forwards = false, .maxSpeed = 75, .minSpeed = 70, .earlyExitRange = 2});
+    chassis.moveToPoint(23.5, 0, 1200);
 }
 
 void fourRingRed(){
@@ -184,40 +195,74 @@ void fourRingBlue(){
 
 }
 
-void disruptRed(){
-    chassis.setPose(-46.489,31.313,70);
+void gRushRed(){
+    chassis.setPose(-51, -58.5, 270);
+    chassis.moveToPoint(-20, -58.5, 1300, {.forwards = false, .maxSpeed = 100, .minSpeed = 60, .earlyExitRange = 2});
+    chassis.turnToPoint(0, -46, 700, {.forwards = false});
+    pros::Task autoClamp(autoClampTask);
+    chassis.moveToPoint(-6, -50, 1450, {.forwards = false, .maxSpeed = 85});
+    pros::delay(750); //delay for clamp
+    moveRelative(5, 100, 750);
+    chassis.waitUntil(5);
+    autoClamp.suspend();
+    pros::Task intake(intakeTask);
+    chassis.turnToPoint(-23.5, -47.5, 750, {}, false);
+    Clamp.set_value(LOW);
+    intake.suspend();
+    hooks.move(0);
+    preroller.move(127);
+    chassis.moveToPoint(-23.5, -47.5, 750, {.maxSpeed = 100, .minSpeed = 70, .earlyExitRange = 2});
+    chassis.turnToPoint(-21, -23.5, 1000, {.forwards = false, .minSpeed = 60, .earlyExitRange = 1});
+    autoClamp.resume();
+    chassis.moveToPoint(-21.5, -23.5, 1250, {.forwards = false, .maxSpeed = 65}, false);
+    preroller.move(0);
+    intake.resume();
+    chassis.swingToPoint(-45, 0, lemlib::DriveSide::LEFT, 1000);
+    chassis.moveToPoint(-45, 0, 1500, {.maxSpeed = 60});
+    chassis.waitUntil(3);
     inLift.set_value(HIGH);
-    chassis.moveToPoint(-6, 46, 2000, {.maxSpeed = 100});
-    chassis.moveToPoint(-23.5, 47, 1500, {.forwards = false, .maxSpeed = 60}, false);
-    chassis.turnToPoint(-23.5, 23.5, 1000, {.forwards = false});
-    chassis.moveToPoint(-23.5, 23.5, 1250, {.forwards = false, .maxSpeed = 60}, false);
-    Clamp.set_value(HIGH);
-    chassis.moveToPoint(-23.5, 23.5, 750, {.forwards = false, .maxSpeed = 70}, false);
-    intake.move(127);
+    chassis.waitUntilDone();
     inLift.set_value(LOW);
-    pros::delay(200);
-    chassis.moveToPoint(-19.341, 41.123, 1000);
-    chassis.swingToHeading(180, lemlib::DriveSide::LEFT, 1250, {.direction = AngularDirection::CCW_COUNTERCLOCKWISE, .maxSpeed = 60});
-    chassis.turnToPoint(-48.191, 19.983, 1500);
-    chassis.moveToPoint(-48.191, 19.983, 1500);
+    pros::delay(250);
+    moveRelative(-20, 100, 1250);
+    intake.suspend();
+    preroller.move(0);
+    chassis.moveToPoint(-23.5, -5, 1500, {.maxSpeed = 70});
 }
 
-void disruptBlue(){
-    chassis.setPose(46.489,31.313,290);
+void gRushBlue(){
+    chassis.setPose(51, -58.5, 90);
+    chassis.moveToPoint(20, -58.5, 1300, {.forwards = false, .maxSpeed = 100, .minSpeed = 60, .earlyExitRange = 2});
+    chassis.turnToPoint(0, -46, 700, {.forwards = false});
+    pros::Task autoClamp(autoClampTask);
+    chassis.moveToPoint(6, -50, 1450, {.forwards = false, .maxSpeed = 85});
+    pros::delay(750); //delay for clamp
+    moveRelative(5, 100, 750);
+    chassis.waitUntil(5);
+    autoClamp.suspend();
+    pros::Task intake(intakeTask);
+    chassis.turnToPoint(23.5, -47.5, 750, {}, false);
+    Clamp.set_value(LOW);
+    intake.suspend();
+    hooks.move(0);
+    preroller.move(127);
+    chassis.moveToPoint(23.5, -47.5, 750, {.maxSpeed = 100, .minSpeed = 70, .earlyExitRange = 2});
+    chassis.turnToPoint(21, -23.5, 1000, {.forwards = false, .minSpeed = 60, .earlyExitRange = 1});
+    autoClamp.resume();
+    chassis.moveToPoint(21.5, -23.5, 1250, {.forwards = false, .maxSpeed = 65}, false);
+    preroller.move(0);
+    intake.resume();
+    chassis.swingToPoint(45, 0, lemlib::DriveSide::LEFT, 1000);
+    chassis.moveToPoint(45, 0, 1500, {.maxSpeed = 60});
+    chassis.waitUntil(3);
     inLift.set_value(HIGH);
-    chassis.moveToPoint(6, 46, 2000, {.maxSpeed = 100});
-    chassis.moveToPoint(23.5, 47, 1500, {.forwards = false, .maxSpeed = 60}, false);
-    chassis.turnToPoint(23.5, 23.5, 1000, {.forwards = false});
-    chassis.moveToPoint(23.5, 23.5, 1250, {.forwards = false, .maxSpeed = 60}, false);
-    Clamp.set_value(HIGH);
-    chassis.moveToPoint(23.5, 23.5, 750, {.forwards = false, .maxSpeed = 70}, false);
-    intake.move(127);
+    chassis.waitUntilDone();
     inLift.set_value(LOW);
-    pros::delay(200);
-    chassis.moveToPoint(19.341, 41.123, 1000);
-    chassis.swingToHeading(180, lemlib::DriveSide::RIGHT, 1250, {.direction = AngularDirection::CW_CLOCKWISE, .maxSpeed = 60});
-    chassis.turnToPoint(48.191, 19.983, 1500);
-    chassis.moveToPoint(48.191, 19.983, 1500);
+    pros::delay(250);
+    moveRelative(-20, 100, 1250);
+    intake.suspend();
+    preroller.move(0);
+    chassis.moveToPoint(23.5, -5, 1500, {.maxSpeed = 70});
 }
 
 void rushRed(){

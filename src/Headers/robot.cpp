@@ -37,6 +37,7 @@ Rotation angRot(-13);
 
 adi::Pneumatics Clamp('a', LOW);
 adi::Pneumatics inLift('b', LOW);
+adi::Pneumatics doink('e', LOW);
 
 // drivetrain settings
 Drivetrain drivetrain(&driveLeft, // left motor group

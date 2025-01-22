@@ -1,9 +1,9 @@
-void redSoloWP();
-void blueSoloWP();
-void fourRingRed();
-void fourRingBlue();
-void disruptBlue();
-void disruptRed();
+void redHighNeg();
+void blueHighNeg();
+void twoTopRed();
+void twoTopBlue();
+void gRushBlue();
+void gRushRed();
 void rushBlue();
 void rushRed();
 void skills();
