@@ -44,10 +44,11 @@ bool isJamHandled = true;
 //     }
 //   }
 
+pros::Task guh(intakeTask);
+
 void setIntakes() {
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-        hooks.move_velocity(600);
-        preroller.move_velocity(200);
+        guh.resume();
 
         // Check the color sensor based on the boolean value
         // int hue = sorter.get_hue();
@@ -58,9 +59,11 @@ void setIntakes() {
         
 
     } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+        guh.suspend();
         hooks.move_velocity(-600);
         preroller.move_velocity(-200);
     } else {
+        guh.suspend();
         hooks.move_velocity(0);
         preroller.move_velocity(0);
     }
@@ -172,6 +175,7 @@ void ledTime() {
   TimeLED.off();
   driverClock.waitUntil(18 * 1000);
   TimeLED.setColor(0xE5195E);
+  underglow.setColor(0xE5195E);
   driverClock.waitUntil(.2 * 1000);
   Clamp.set_value(LOW);
 }

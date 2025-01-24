@@ -385,3 +385,7 @@ void skills(){
     Clamp.set_value(LOW);
     chassis.moveToPoint(62, -67, 1500, {.forwards = false, .maxSpeed = 60}, false);
 }
+
+void ramsetteTest(){
+    
+}
