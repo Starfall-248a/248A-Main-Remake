@@ -3,6 +3,7 @@ void LBTask();
 void autoIntake();
 void autoClampTask();
 void detectSorter();
-void intakeTask();
+void BintakeTask();
+void RintakeTask();
 
 static bool clampa;

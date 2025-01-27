@@ -7,3 +7,4 @@ void gRushRed();
 void rushBlue();
 void rushRed();
 void skills();
+void ramsetteTest();

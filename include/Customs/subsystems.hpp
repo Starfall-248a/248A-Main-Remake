@@ -6,6 +6,7 @@ void colorSorter();
 void setLifter();
 void ledTime();
 void setLB();
+void setDoink();
 
 static bool blueSide = false;
 

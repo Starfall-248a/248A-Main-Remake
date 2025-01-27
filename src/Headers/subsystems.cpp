@@ -44,11 +44,10 @@ bool isJamHandled = true;
 //     }
 //   }
 
-pros::Task guh(intakeTask);
-
 void setIntakes() {
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-        guh.resume();
+        hooks.move(127);
+        preroller.move(127);
 
         // Check the color sensor based on the boolean value
         // int hue = sorter.get_hue();
@@ -59,11 +58,11 @@ void setIntakes() {
         
 
     } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-        guh.suspend();
+        
         hooks.move_velocity(-600);
         preroller.move_velocity(-200);
     } else {
-        guh.suspend();
+        
         hooks.move_velocity(0);
         preroller.move_velocity(0);
     }
@@ -105,15 +104,6 @@ void setIntakes() {
   }
 
 void setClamp() {
-  // if (controller.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)) {
-  //   if (!toggle) {
-  //     Clamp.set_value(true);
-  //     toggle = !toggle;
-  //   } else {
-  //     Clamp.set_value(false);
-  //     toggle = !toggle;
-  //   }
-  // }
   if (controller.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)) {
     if (Clamp.get_value() == LOW) {
       Clamp.set_value(HIGH);
@@ -144,6 +134,16 @@ void setLB(){
   } else if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
     currState = 1;
     target = states[currState];
+  }
+}
+
+void setDoink() {
+  if (controller.get_digital_new_press(E_CONTROLLER_DIGITAL_B)) {
+    if (doink.get_value() == LOW) {
+      doink.set_value(HIGH);
+    } else {
+      doink.set_value(LOW);
+    }
   }
 }
 

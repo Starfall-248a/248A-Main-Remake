@@ -2,14 +2,12 @@
 #include "robodash/api.h"
 
 rd::Selector Match_autos({
-	{"Red disrupt", &gRushRed},
-	{"Blue disrupt", &gRushBlue},
+	{"Red rush", &gRushRed},
+	{"Blue rush", &gRushBlue},
 	{"Red Neg High ring", &redHighNeg},
 	{"Blue Neg high ring", &blueHighNeg},
-	{"Red five ring", &twoTopRed},
-	{"Blue five ring", &twoTopBlue},
-	{"Red rush", &rushRed},
-	{"Blue rush", &rushBlue},
+	{"Red two top", &twoTopRed},
+	{"Blue two top", &twoTopBlue},
 	{"Skills", &skills},
 });
 
@@ -18,6 +16,7 @@ rd::Image goof("goof.bin", "goof");
 
 void initialize() {
 	Match_autos.focus();
+	sorter.set_integration_time(10);
 	console.println("Initializing robot...");
 	chassis.calibrate(); // calibrate sensors
 	ledManager.initialize(); // initialize the LED manager
@@ -50,7 +49,6 @@ void autonomous() {
 	console.println("Running auton...");
 	console.focus();
 	Match_autos.run_auton();
-	
 }
 
 void opcontrol() {
@@ -71,6 +69,7 @@ void opcontrol() {
 		setIntakes();
 		setClamp();
 		setLB();
+		setDoink();
 		
 		pros::delay(10);          // Run for 10 ms then update
 	}
