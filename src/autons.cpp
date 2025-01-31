@@ -267,23 +267,94 @@ void gRushBlue(){
     autoClamp.suspend();
 }
 
-void rushRed(){
-    chassis.setPose(51, -60,90);
-    chassis.moveToPoint(15, -60, 1250, {.forwards = false});
-    chassis.turnToPoint(8.61, -53.904, 1000);
-    chassis.moveToPoint(8.61, -53.904, 1000);
+void dRushRed(){
+    chassis.setPose(-50.75, -35.5,90);
+    doink.set_value(HIGH);
+    preroller.move(127);
+    chassis.moveToPose(-10.5, -47.5, 95, 1600, {.lead = .4, .minSpeed = 85}, false);
+    doink.set_value(LOW);
+    pros::delay(100);
+    moveRelative(-20, 75, 1000);
+    chassis.waitUntil(12);
+    doink.set_value(HIGH);
+    chassis.waitUntilDone();
+    doink.set_value(LOW);
+    chassis.turnToHeading(chassis.getPose().theta - 190, 1250, {}, false);
+    pros::Task autoClamp(autoClampTask);
+    moveRelative(-30, 70, 1200);
+    chassis.waitUntilDone();
+    hooks.move_relative(1000, 600);
+    pros::delay(1000);
+    autoClamp.suspend();
+    chassis.turnToHeading(270, 250);
+    moveRelative(30, 75, 1500);
+    chassis.waitUntil(5);
+    Clamp.set_value(LOW);
+    chassis.waitUntilDone();
+    chassis.turnToPoint(-15, -22.5, 750, {.forwards = false});
+    autoClamp.resume();
+    chassis.moveToPoint(-16, -22.5, 1500, {.forwards = false, .maxSpeed = 75}, false);
+    hooks.move_relative(3000, 600);
+    // chassis.moveToPoint(float x, float y, int timeout);
+    moveRelative(10, 75, 1000);
+    chassis.waitUntilDone();
+    inLift.set_value(HIGH);
+    chassis.turnToPoint(-45, -2, 1000);
+    pros::Task intake(BintakeTask);
+    currState = 1;
+    target = states[currState];
+    chassis.moveToPoint(-45, -2, 1000, {.maxSpeed = 70}, false);
+    inLift.set_value(LOW);
+    pros::delay(250);
+    chassis.turnToHeading(chassis.getPose().theta + 180, 1000, {}, false);
+    moveRelative(65, 100, 1250);
+    intake.suspend();
+    preroller.move(0);
 }
 
-void rushBlue(){
-    blueSide = true;
-    chassis.setPose(51, -60,90);
-    chassis.moveToPoint(15, -60, 1100, {.forwards = false});
-    chassis.turnToPoint(8.61, -55, 650, {.forwards = false});
-    chassis.moveToPoint(6, -53, 1000, {.forwards = false, .maxSpeed = 80}, false);
-    // Clamp.set_value(HIGH);
-    // intake.move(127);
-    // pros::delay(100);
-    // chassis.swingToPoint(25.42, -41.763, lemlib::DriveSide::LEFT, 1000);
+void dRushBlue(){
+    chassis.setPose(50.75, -35.5,270);
+    doink.set_value(HIGH);
+    preroller.move(127);
+    chassis.moveToPose(10.5, -47.5, 265, 1600, {.lead = .4, .minSpeed = 85}, false);
+    doink.set_value(LOW);
+    pros::delay(100);
+    moveRelative(-20, 75, 1000);
+    chassis.waitUntil(12);
+    doink.set_value(HIGH);
+    chassis.waitUntilDone();
+    doink.set_value(LOW);
+    chassis.turnToHeading(chassis.getPose().theta + 190, 1250, {}, false);
+    pros::Task autoClamp(autoClampTask);
+    moveRelative(-30, 70, 1200);
+    chassis.waitUntilDone();
+    hooks.move_relative(1000, 600);
+    pros::delay(1000);
+    autoClamp.suspend();
+    chassis.turnToHeading(90, 250);
+    moveRelative(30, 75, 1500);
+    chassis.waitUntil(5);
+    Clamp.set_value(LOW);
+    chassis.waitUntilDone();
+    chassis.turnToPoint(15, -22.5, 750, {.forwards = false});
+    autoClamp.resume();
+    chassis.moveToPoint(16, -22.5, 1500, {.forwards = false, .maxSpeed = 75}, false);
+    hooks.move_relative(3000, 600);
+    // chassis.moveToPoint(float x, float y, int timeout);
+    moveRelative(10, 75, 1000);
+    chassis.waitUntilDone();
+    inLift.set_value(HIGH);
+    chassis.turnToPoint(45, -2, 1000);
+    pros::Task intake(BintakeTask);
+    currState = 1;
+    target = states[currState];
+    chassis.moveToPoint(45, -2, 1000, {.maxSpeed = 70}, false);
+    inLift.set_value(LOW);
+    pros::delay(250);
+    chassis.turnToHeading(chassis.getPose().theta + 180, 1000, {}, false);
+    moveRelative(65, 100, 1250);
+    intake.suspend();
+    preroller.move(0);
 }
 
 void skills(){

@@ -2,6 +2,8 @@
 #include "robodash/api.h"
 
 rd::Selector Match_autos({
+	{"doinker goal rush red", &dRushRed},
+	{"doinker goal rush blue", &dRushBlue},
 	{"Red rush", &gRushRed},
 	{"Blue rush", &gRushBlue},
 	{"Red Neg High ring", &redHighNeg},
@@ -70,6 +72,7 @@ void opcontrol() {
 		setClamp();
 		setLB();
 		setDoink();
+		setAutoClamp();
 		
 		pros::delay(10);          // Run for 10 ms then update
 	}
