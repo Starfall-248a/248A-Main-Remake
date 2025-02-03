@@ -344,7 +344,8 @@
     "upload_options": {
       "description": "Guh",
       "icon": "pizza",
-      "after": "none"
+      "after": "none",
+      "slot": 1
     },
     "use_early_access": false
   }

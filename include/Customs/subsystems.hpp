@@ -21,8 +21,4 @@ void startAutoClampTask();
 // Function to stop the autoClampTask
 void stopAutoClampTask();
 
-
-
 static bool blueSide = false;
-
-extern pros::Task guh;

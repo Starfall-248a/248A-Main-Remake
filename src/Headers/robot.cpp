@@ -84,3 +84,6 @@ Chassis chassis(drivetrain,
 stormlib::aRGB underglow(4, 30);
 stormlib::aRGB TimeLED(3, 63);
 stormlib::aRGB_manager ledManager(&underglow, &TimeLED, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
+
+rd::Image planet("Planet.bin", "Planet");
+rd::Image goof("goof.bin", "goof");

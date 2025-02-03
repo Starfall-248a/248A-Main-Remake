@@ -51,3 +51,6 @@ extern aRGB_manager ledManager;
 extern stormlib::clock driverClock;
 
 extern rd::Console console;
+
+extern rd::Image planet;
+extern rd::Image goof;

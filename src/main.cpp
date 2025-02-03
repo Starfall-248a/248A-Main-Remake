@@ -2,19 +2,16 @@
 #include "robodash/api.h"
 
 rd::Selector Match_autos({
-	{"doinker goal rush red", &dRushRed},
-	{"doinker goal rush blue", &dRushBlue},
-	{"Red rush", &gRushRed},
-	{"Blue rush", &gRushBlue},
-	{"Red Neg High ring", &redHighNeg},
-	{"Blue Neg high ring", &blueHighNeg},
-	{"Red two top", &twoTopRed},
-	{"Blue two top", &twoTopBlue},
+	{"Red doinker rush", &dRushRed},
+	{"Blue doinker rush", &dRushBlue},
+	{"Red clamp rush", &gRushRed},
+	{"Blue clamp rush", &gRushBlue},
+	{"Red 1+3", &twoTopRed},
+	{"Blue 1+3", &twoTopBlue},
+	{"Red Neg 5 ring", &redHighNeg},
+	{"Blue Neg 5 ring", &blueHighNeg},
 	{"Skills", &skills},
 });
-
-rd::Image planet("Planet.bin", "Planet");
-rd::Image goof("goof.bin", "goof");
 
 void initialize() {
 	Match_autos.focus();
@@ -23,7 +20,6 @@ void initialize() {
 	chassis.calibrate(); // calibrate sensors
 	ledManager.initialize(); // initialize the LED manager
 	ledManager.flow(0x421C52, 0x732C7B);
-	// detectSorter();
 	pros::Task liftControlTask(LBTask, "LB Task");
 	pros::Task screenTask([&]() {
         lemlib::Pose pose(0, 0, 0);
@@ -39,13 +35,9 @@ void initialize() {
     });
 }
 
-void disabled() {
-	
-}
+void disabled() {}
 
-void competition_initialize() {
-  
-}
+void competition_initialize() {}
 
 void autonomous() {
 	console.println("Running auton...");

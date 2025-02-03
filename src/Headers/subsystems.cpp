@@ -14,23 +14,12 @@ void setIntakes() {
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
         hooks.move(127);
         preroller.move(127);
-
-        // Check the color sensor based on the boolean value
-        // int hue = sorter.get_hue();
-        // if ((!blueSide && (hue >= 215 && hue <= 240)) || (blueSide && (hue >= 0 && hue <= 20))) {
-            
-        //     hooks.move_velocity(-600); // Reverse the intake motor if the color matches
-        //     }
-        
-
-    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-        
-        hooks.move_velocity(-600);
-        preroller.move_velocity(-200);
+    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {  
+        hooks.move(-127);
+        preroller.move(-127);
     } else {
-        
-        hooks.move_velocity(0);
-        preroller.move_velocity(0);
+        hooks.move(0);
+        preroller.move(0);
     }
 }
 
@@ -96,6 +85,9 @@ void setLB(){
     target = states[currState];
   } else if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
     currState = 1;
+    target = states[currState];
+  } else if (controller.get_digital_new_press(E_CONTROLLER_DIGITAL_A) && currState == 1){
+    currState = 0;
     target = states[currState];
   }
 }
