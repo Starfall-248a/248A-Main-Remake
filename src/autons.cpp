@@ -38,26 +38,26 @@ void blueSoloWP(){
     chassis.waitUntilDone();
     autoClamp.suspend();
     chassis.turnToPoint(26.5, -47.5, 1000, {}, false);
-    pros::Task intake(BintakeTask, "Intake function");
+    hooks.move(127);
+    preroller.move(127);
     chassis.moveToPoint(26.5, -48.5, 1000); 
     chassis.turnToPoint(48.5, 0, 1000);
     chassis.moveToPoint(56.5, 23.5, 2500, {.maxSpeed = 60});
     chassis.waitUntil(30);
     Clamp.set_value(LOW);
     chassis.waitUntilDone();
-    intake.suspend();
     hooks.move(0);
     preroller.move(127);
     chassis.waitUntilDone();
     chassis.turnToPoint(23.5, 23.5, 750, {.forwards = false});
     autoClamp.resume();
     chassis.moveToPoint(23.5, 23.5, 1250, {.forwards = false, .maxSpeed = 75});
-    intake.resume();
+    hooks.move(127);
+    preroller.move(127);
     chassis.turnToPoint(23.5, 47.5, 750);
     chassis.moveToPoint(23.5, 47.5, 1000);
     chassis.turnToPoint(23.5, 0, 750);
     chassis.moveToPoint(23.5, 0, 2500, {.maxSpeed = 65});
-    intake.suspend();
     autoClamp.suspend();
 }
 
@@ -76,26 +76,26 @@ void redSoloWP(){
     chassis.waitUntilDone();
     autoClamp.suspend();
     chassis.turnToPoint(-26.5, 47.5, 1000, {}, false);
-    pros::Task intake(RintakeTask, "Intake function");
+    hooks.move(127);
+    preroller.move(127);
     chassis.moveToPoint(-26.5, 48.5, 1000); 
     chassis.turnToPoint(-48.5, 0, 1000);
     chassis.moveToPoint(-57.5, -23.5, 2500, {.maxSpeed = 60});
     chassis.waitUntil(30);
     Clamp.set_value(LOW);
     chassis.waitUntil(77);
-    intake.suspend();
     hooks.move(0);
     preroller.move(127);
     chassis.waitUntilDone();
     chassis.turnToPoint(-23.5, -23.5, 750, {.forwards = false});
     autoClamp.resume();
     chassis.moveToPoint(-23.5, -23.5, 1250, {.forwards = false, .maxSpeed = 75});
-    intake.resume();
+    hooks.move(127);
+    preroller.move(127);
     chassis.turnToPoint(-23.5, -47.5, 750);
     chassis.moveToPoint(-23.5, -47.5, 1000);
     chassis.turnToPoint(-23.5, 0, 750);
     chassis.moveToPoint(-23.5, 0, 2500, {.maxSpeed = 65});
-    intake.suspend();
     autoClamp.suspend();
 }
 
