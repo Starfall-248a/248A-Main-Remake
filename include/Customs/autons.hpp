@@ -1,3 +1,5 @@
+void blueSoloWP();
+void redSoloWP();
 void redHighNeg();
 void blueHighNeg();
 void twoTopRed();

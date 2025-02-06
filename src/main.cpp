@@ -2,6 +2,8 @@
 #include "robodash/api.h"
 
 rd::Selector Match_autos({
+	{"Red Solo WP", &redSoloWP},
+	{"Blue Solo WP", &blueSoloWP},
 	{"Red doinker rush", &dRushRed},
 	{"Blue doinker rush", &dRushBlue},
 	{"Red clamp rush", &gRushRed},
