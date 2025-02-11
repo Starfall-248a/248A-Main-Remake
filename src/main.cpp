@@ -58,7 +58,7 @@ void opcontrol() {
         int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
         // move the robot
-        chassis.arcade(leftY, rightX, false, 0.5);
+        chassis.arcade(leftY, rightX, false, 0.55);
 		
 		// set subsystems
 		setLifter();
