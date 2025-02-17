@@ -5,6 +5,8 @@
 rd::Selector Match_autos({
 	{"Red Solo WP", &redSoloWP},
 	{"Blue Solo WP", &blueSoloWP},
+	{"Red Rush Clear", &rushClearRed},
+	{"Blue Rush Clear", &rushClearBlue},
 	{"Red doinker rush", &dRushRed},
 	{"Blue doinker rush", &dRushBlue},
 	{"Red clamp rush", &gRushRed},
@@ -58,7 +60,7 @@ void opcontrol() {
         int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
         // move the robot
-        chassis.arcade(leftY, rightX, false, 0.55);
+        chassis.arcade(leftY, rightX, false, 0.5);
 		
 		// set subsystems
 		setLifter();
