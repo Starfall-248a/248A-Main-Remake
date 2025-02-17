@@ -14,7 +14,7 @@ const float wheelRadius = 2.75/2;
 const float maxMotor = 600;
 const float ratio = 1;
 
-void follow_ramsette(double target_x, double target_y, double target_theta){
+void followRamsette(double target_x, double target_y, double target_theta){
     //path creation
 auto constraints = squiggles::Constraints(MAX_VEL, MAX_ACCEL, MAX_JERK);
 auto generator = squiggles::SplineGenerator(

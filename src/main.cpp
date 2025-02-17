@@ -3,23 +3,22 @@
 #include "robodash/api.h"
 
 rd::Selector Match_autos({
+	{"Red Solo WP", &redSoloWP},
+	{"Blue Solo WP", &blueSoloWP},
+	{"Red doinker rush", &dRushRed},
+	{"Blue doinker rush", &dRushBlue},
+	{"Red clamp rush", &gRushRed},
+	{"Blue clamp rush", &gRushBlue},
+	{"Red 1+3", &twoTopRed},
+	{"Blue 1+3", &twoTopBlue},
+	{"Red Neg 5 ring", &redHighNeg},
+	{"Blue Neg 5 ring", &blueHighNeg},
 	{"Skills", &skills},
-	{"Red Solo Winpoint", &redSoloWP},
-	{"Blue Solo Winpoint", &blueSoloWP},
-	{"Red five ring", &fourRingRed},
-	{"Blue five ring", &fourRingBlue},
-	{"Red rush", &rushRed},
-	{"Blue rush", &rushBlue},
-	{"Red disrupt", &disruptRed},
-	{"Blue disrupt", &disruptBlue},
-	
 });
-
-rd::Image planet("Planet.bin", "Planet");
-rd::Image goof("goof.bin", "goof");
 
 void initialize() {
 	Match_autos.focus();
+	sorter.set_integration_time(10);
 	console.println("Initializing robot...");
 	chassis.calibrate(); // calibrate sensors
 	ledManager.initialize(); // initialize the LED manager
@@ -39,13 +38,9 @@ void initialize() {
     });
 }
 
-void disabled() {
-	
-}
+void disabled() {}
 
-void competition_initialize() {
-  
-}
+void competition_initialize() {}
 
 void autonomous() {
 	goof.focus();
@@ -63,13 +58,15 @@ void opcontrol() {
         int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
         // move the robot
-        chassis.arcade(leftY, rightX, false, 0.5);
+        chassis.arcade(leftY, rightX, false, 0.55);
 		
 		// set subsystems
 		setLifter();
 		setIntakes();
 		setClamp();
 		setLB();
+		setDoink();
+		setAutoClamp();
 		
 		pros::delay(10);          // Run for 10 ms then update
 	}

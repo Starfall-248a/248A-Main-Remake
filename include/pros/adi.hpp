@@ -527,7 +527,7 @@ class AnalogOut : private Port {
 };
 ///@}
 
-class DigitalOut : private Port {
+class DigitalOut : public Port {
 	/**
 	 * \addtogroup cpp-adi
 	 *  @{

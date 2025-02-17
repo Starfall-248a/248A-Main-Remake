@@ -4,7 +4,7 @@
 
 int currState = 0;
 const int numStates = 4;
-int states[numStates] = {0, 400, 1000, 1900};
+int states[numStates] = {0, 400, 1200, 1950};
 int target = 0;
 
 void nextState() {
@@ -19,7 +19,7 @@ void nextState() {
 }
 
 void liftControl() {
-    double kp = .4;
+    double kp = .25;
     double error = target - LB.get_position();
     double velocity = kp * error;
     LB.move(velocity);

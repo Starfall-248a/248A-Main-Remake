@@ -25,11 +25,14 @@ extern MotorGroup intake;
 extern Motor LB;
 
 extern Imu imu;
-extern Optical colorSort;
-extern Distance localizer;
+extern Optical sorter;
+extern Distance localizerL;
+extern Distance clamper;
+extern Optical reader;
 
 extern adi::Pneumatics Clamp;
 extern adi::Pneumatics inLift;
+extern adi::Pneumatics doink;
 
 extern Rotation latRot;
 extern Rotation angRot;
@@ -48,3 +51,6 @@ extern aRGB_manager ledManager;
 extern stormlib::clock driverClock;
 
 extern rd::Console console;
+
+extern rd::Image planet;
+extern rd::Image goof;

@@ -27,13 +27,17 @@ MotorGroup intake({-7, -13}, pros::MotorGearset::blue); // intake motors on port
 
 Imu imu(12);
 
-Distance localizer(3);
+Distance clamper(5);
+Distance localizerL(3);
+Optical sorter(6);
+Optical reader(4);
 
 Rotation latRot(-8);
 Rotation angRot(-13);
 
-adi::Pneumatics Clamp(1, LOW);
-adi::Pneumatics inLift(2, LOW);
+adi::Pneumatics Clamp('a', LOW);
+adi::Pneumatics inLift('b', LOW);
+adi::Pneumatics doink('e', LOW);
 
 // drivetrain settings
 Drivetrain drivetrain(&driveLeft, // left motor group
@@ -59,13 +63,13 @@ OdomSensors sensors(&vertical_tracking_wheel, // vertical tracking wheel 1, set 
 // input curve for throttle input during driver control
 ExpoDriveCurve throttle_curve(6.35, // joystick deadband out of 127
                                      10, // minimum output where drivetrain will move out of 127
-                                     1.025 // expo curve gain
+                                     1 // expo curve gain
 );
 
 // input curve for steer input during driver control
 ExpoDriveCurve steer_curve(6.35, // joystick deadband out of 127
                                   10, // minimum output where drivetrain will move out of 127
-                                  1.025 // expo curve gain
+                                  1.015 // expo curve gain
 );
 
 // create the chassis
@@ -80,3 +84,6 @@ Chassis chassis(drivetrain,
 stormlib::aRGB underglow(4, 30);
 stormlib::aRGB TimeLED(3, 63);
 stormlib::aRGB_manager ledManager(&underglow, &TimeLED, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
+
+rd::Image planet("Planet.bin", "Planet");
+rd::Image goof("goof.bin", "goof");
