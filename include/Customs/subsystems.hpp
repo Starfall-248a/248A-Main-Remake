@@ -4,3 +4,4 @@ void colorSorter();
 void setLifter();
 void ledTime();
 void setLB();
+void ledBinds();

@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/rtos.hpp"
 #include "robodash/api.h"
 
 rd::Selector Match_autos({
@@ -47,17 +48,15 @@ void competition_initialize() {
 }
 
 void autonomous() {
-	console.println("Running auton...");
-	console.focus();
+	goof.focus();
 	Match_autos.run_auton();
-	
 }
 
 void opcontrol() {
 	console.clear();
 	planet.focus(); 
-	console.println("Driving...");
 	pros::Task Flasher(ledTime, "LED time");
+	pros::Task ledBind(ledBinds, "LED binds");
 	while (true) {
 		// get left y and right x positions
         int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
