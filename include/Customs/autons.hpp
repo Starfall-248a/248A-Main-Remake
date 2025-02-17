@@ -8,5 +8,7 @@ void gRushBlue();
 void gRushRed();
 void dRushRed();
 void dRushBlue();
+void rushClearRed();
+void rushClearBlue();
 void skills();
 void ramsetteTest();
