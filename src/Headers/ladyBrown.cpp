@@ -24,3 +24,8 @@ void liftControl() {
     double velocity = kp * error;
     LB.move(velocity);
 }
+
+void lbState(int state) {
+    currState = (state >= 0 && state < numStates) ? state : 0;
+    target = states[currState];
+}

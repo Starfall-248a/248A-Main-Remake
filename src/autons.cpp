@@ -523,10 +523,10 @@ void rushClearBlue(){
 }
 
 void elimBlue(){
-    chassis.setPose(50.75, -35.5,270);
+    chassis.setPose(50.75, -35.5, 270);
     doink.set_value(HIGH);
     preroller.move(127);
-    chassis.moveToPose(10.5, -47.5, 265, 1600, {.lead = .4, .minSpeed = 85}, false);
+    chassis.moveToPose(10.5, -47.5, 265, 1600, {.lead = .4, .minSpeed = 95}, false);
     doink.set_value(LOW);
     pros::delay(100);
     moveRelative(-20, 75, 1000);
@@ -542,34 +542,33 @@ void elimBlue(){
     pros::delay(750);
     autoClamp.suspend();
     chassis.turnToHeading(90, 250);
-    moveRelative(30, 75, 1250);
+    moveRelative(30, 90, 1250);
     chassis.waitUntil(7);
     Clamp.set_value(LOW);
     chassis.waitUntilDone();
     chassis.turnToPoint(15, -22.5, 750, {.forwards = false});
     autoClamp.resume();
-    chassis.moveToPoint(16, -22.5, 1000, {.forwards = false, .maxSpeed = 75}, false);
+    chassis.moveToPoint(16, -22.5, 1000, {.forwards = false, .maxSpeed = 85}, false);
     hooks.move_relative(3000, 600);
     autoClamp.suspend();
     preroller.move(0);
-    chassis.moveToPose(46, -61.5, 120, 3000, {.lead = .6, .maxSpeed = 75, .minSpeed = 65}, false);
+    chassis.moveToPose(46, -61.5, 120, 3000, {.lead = .6, .maxSpeed = 85, .minSpeed = 65}, false);
     doink.set_value(HIGH);
     pros::delay(100);
     moveRelative(12, 60, 750);
     chassis.turnToHeading(0, 850, {}, false);
     preroller.move(127);
     hooks.move(127);
-    currState = 1;
-    target = states[currState];
+    lbState(1);
     doink.set_value(LOW);
-    moveRelative(15, 75, 1000);
+    moveRelative(15, 75, 900);
     chassis.turnToPoint(24, -63, 750, {.earlyExitRange = 2});
     chassis.moveToPoint(24, -63, 1000, {.maxSpeed = 100, .minSpeed = 60});
+    Clamp.set_value(LOW);
     chassis.turnToPoint(10, -70, 600, {}, false);
     hooks.move(0);
     preroller.move(0);
-    currState = 4;
-    target = states[currState];
+    lbState(4);
     autoClamp.suspend();
 }
 
