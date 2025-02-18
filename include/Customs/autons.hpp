@@ -10,5 +10,5 @@ void dRushRed();
 void dRushBlue();
 void rushClearRed();
 void rushClearBlue();
+void elimBlue();
 void skills();
-void ramsetteTest();

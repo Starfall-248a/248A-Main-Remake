@@ -8,7 +8,6 @@ void ledTime();
 void setLB();
 void setDoink();
 void setAutoClamp();
-void ledBinds();
 
 // Declare the task function prototype
 void primeClampTask(void* param);

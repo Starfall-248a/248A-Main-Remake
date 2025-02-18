@@ -3,6 +3,7 @@
 #include "robodash/api.h"
 
 rd::Selector Match_autos({
+	{"Elims Blue", &elimBlue},
 	{"Red Solo WP", &redSoloWP},
 	{"Blue Solo WP", &blueSoloWP},
 	{"Red Rush Clear", &rushClearRed},
@@ -53,7 +54,7 @@ void opcontrol() {
 	console.clear();
 	planet.focus(); 
 	pros::Task Flasher(ledTime, "LED time");
-	pros::Task ledBind(ledBinds, "LED binds");
+	
 	while (true) {
 		// get left y and right x positions
         int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);

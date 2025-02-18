@@ -10,32 +10,6 @@ static bool inLifter{false};
 bool toggleSorter{true};
 int startTime;
 
-void ledBinds() {
-  while (true) {
-    bool buttonPressed = false;
-
-    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      ledManager.setColor(0xffa500); // Orange color
-      buttonPressed = true;
-    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-      ledManager.setColor(0x00fff9); // Blue color
-      buttonPressed = true;
-    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-      ledManager.setColor(0xfff300); // Yellow color
-      buttonPressed = true;
-    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-      ledManager.setColor(0x00ff00); // Green color
-      buttonPressed = true;
-    }
-
-    if (!buttonPressed) {
-      ledManager.setColor(0xffffff); // Default color (white)
-    }
-
-    pros::delay(20); // Delay to prevent task from hogging CPU
-  }
-}
-
 void setIntakes() {
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
         hooks.move(127);
