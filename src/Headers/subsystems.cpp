@@ -102,6 +102,16 @@ void setDoink() {
   }
 }
 
+void setTipper() {
+  if (controller.get_digital_new_press(E_CONTROLLER_DIGITAL_LEFT)) {
+    if (tipper.get_value() == LOW) {
+      tipper.set_value(HIGH);
+    } else {
+      tipper.set_value(LOW);
+    }
+  }
+}
+
 void ledTime() {
   driverClock.start();
   driverClock.waitUntil(43 * 1000);

@@ -4,6 +4,7 @@
 
 rd::Selector Match_autos({
 	{"Elims Blue", &elimBlue},
+	{"Elims Red", &elimRed},
 	{"Red Solo WP", &redSoloWP},
 	{"Blue Solo WP", &blueSoloWP},
 	{"Red Rush Clear", &rushClearRed},
@@ -70,6 +71,7 @@ void opcontrol() {
 		setLB();
 		setDoink();
 		setAutoClamp();
+		setTipper();
 		
 		pros::delay(10);          // Run for 10 ms then update
 	}

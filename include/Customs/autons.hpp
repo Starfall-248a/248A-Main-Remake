@@ -11,4 +11,5 @@ void dRushBlue();
 void rushClearRed();
 void rushClearBlue();
 void elimBlue();
+void elimRed();
 void skills();

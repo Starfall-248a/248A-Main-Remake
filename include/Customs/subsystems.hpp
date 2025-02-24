@@ -2,7 +2,7 @@
 
 void setClamp();
 void setIntakes();
-
+void setTipper();
 void setLifter();
 void ledTime();
 void setLB();

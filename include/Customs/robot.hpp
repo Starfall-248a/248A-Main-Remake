@@ -33,6 +33,7 @@ extern Optical reader;
 extern adi::Pneumatics Clamp;
 extern adi::Pneumatics inLift;
 extern adi::Pneumatics doink;
+extern adi::Pneumatics tipper;
 
 extern Rotation latRot;
 extern Rotation angRot;
