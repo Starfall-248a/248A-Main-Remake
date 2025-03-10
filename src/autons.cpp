@@ -566,7 +566,7 @@ void elimRed(){
     chassis.turnToPoint(-10, -70, 600, {}, false);
     hooks.move(0);
     preroller.move(0);
-    lbState(4);
+    lbState(3);
     autoClamp.suspend();
 }
 
@@ -616,7 +616,7 @@ void elimBlue(){
     chassis.turnToPoint(10, -70, 600, {}, false);
     hooks.move(0);
     preroller.move(0);
-    lbState(4);
+    lbState(3);
     autoClamp.suspend();
 }
 

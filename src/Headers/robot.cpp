@@ -29,11 +29,13 @@ Imu imu(12);
 
 Distance clamper(5);
 Distance localizerL(3);
+Distance Ejector(4);
 Optical sorter(6);
-Optical reader(4);
+pros::adi::AnalogIn Tracker ('g');
 
 Rotation latRot(-8);
 Rotation angRot(-13);
+Rotation lbAngle(1);
 
 adi::Pneumatics Clamp('a', LOW);
 adi::Pneumatics inLift('b', LOW);

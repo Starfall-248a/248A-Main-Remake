@@ -28,7 +28,8 @@ extern Imu imu;
 extern Optical sorter;
 extern Distance localizerL;
 extern Distance clamper;
-extern Optical reader;
+extern Distance Ejector;
+extern adi::AnalogIn Tracker;
 
 extern adi::Pneumatics Clamp;
 extern adi::Pneumatics inLift;
@@ -37,6 +38,7 @@ extern adi::Pneumatics tipper;
 
 extern Rotation latRot;
 extern Rotation angRot;
+extern Rotation lbAngle;
 
 extern Drivetrain drivetrain;
 
