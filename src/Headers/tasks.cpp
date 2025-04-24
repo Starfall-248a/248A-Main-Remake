@@ -47,7 +47,7 @@ void BintakeTask() {
         // Check if a certain amount of time has passed since the last speed check
         if (pros::millis() - lastCheckTime >= 300) { // Check every 300 ms
             // Check if the hook motor is going too slow
-            if (hooks.get_actual_velocity() < 150 && currState != 1) {
+            if (hooks.get_actual_velocity() < 150) {
                 // Reverse the hook motor if it is going too slow
                 hooks.move_velocity(-600);
                 pros::delay(150); // Delay to allow the motor to reverse

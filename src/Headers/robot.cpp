@@ -21,38 +21,36 @@ MotorGroup driveLeft({20, -19, 18}, pros::MotorGearset::blue); // left motors on
 MotorGroup driveRight({-17, 16, -15}, pros::MotorGearset::blue); // right motors on ports 17, 16, 15
 
 Motor LB(-2, pros::MotorGearset::green); // arm motor on port 6
-Motor hooks(-7, pros::MotorGearset::blue); // right intake motor on port 10
+Motor hooks(-14, pros::MotorGearset::blue); // right intake motor on port 10
 Motor preroller(-13, pros::MotorGearset::green); // right intake motor on port 4
-MotorGroup intake({-7, -13}, pros::MotorGearset::blue); // intake motors on ports 9, 4
 
-Imu imu(12);
+Imu imu(10);
 
 Distance clamper(5);
 Distance localizerL(3);
 Optical sorter(6);
 Optical reader(4);
 
-Rotation latRot(-8);
-Rotation angRot(-13);
+Rotation latRot(-13);
+Rotation angRot(4);
 
-adi::Pneumatics Clamp('a', LOW);
-adi::Pneumatics inLift('b', LOW);
-adi::Pneumatics doink('e', LOW);
-adi::Pneumatics tipper('f', LOW);
+adi::Pneumatics Clamp('b', LOW);
+adi::Pneumatics inLift('c', LOW);
+adi::Pneumatics doink('a', LOW);
 
 // drivetrain settings
 Drivetrain drivetrain(&driveLeft, // left motor group
                               &driveRight, // right motor group
-                              11.822028, // 10.6725 inch track width
+                              11.5, // 10.6725 inch track width
                               lemlib::Omniwheel::NEW_275, // using new 2.75" omnis
                               600, // drivetrain rpm is 450
                               2 // horizontal drift is 2
 );
 
 // horizontal tracking wheel
-TrackingWheel horizontal_tracking_wheel(&angRot, 2.125, 2);
+TrackingWheel horizontal_tracking_wheel(&angRot, 2.125, -.5);
 // vertical tracking wheel
-TrackingWheel vertical_tracking_wheel(&latRot, 2.125, 1);
+TrackingWheel vertical_tracking_wheel(&latRot, 2.125, .5);
 
 OdomSensors sensors(&vertical_tracking_wheel, // vertical tracking wheel 1, set to null
                         nullptr, // vertical tracking wheel 2, set to nullptr as we are using IMEs

@@ -3,21 +3,8 @@
 #include "robodash/api.h"
 
 rd::Selector Match_autos({
-	{"Elims Blue", &elimBlue},
-	{"Elims Red", &elimRed},
-	{"Red Solo WP", &redSoloWP},
-	{"Blue Solo WP", &blueSoloWP},
-	{"Red Rush Clear", &rushClearRed},
-	{"Blue Rush Clear", &rushClearBlue},
-	{"Red doinker rush", &dRushRed},
-	{"Blue doinker rush", &dRushBlue},
-	{"Red clamp rush", &gRushRed},
-	{"Blue clamp rush", &gRushBlue},
-	{"Red 1+3", &twoTopRed},
-	{"Blue 1+3", &twoTopBlue},
-	{"Red Neg 5 ring", &redHighNeg},
-	{"Blue Neg 5 ring", &blueHighNeg},
-	{"Skills", &skills},
+	{"Blue standard", &blueStandard}
+	
 });
 
 void initialize() {
@@ -71,7 +58,6 @@ void opcontrol() {
 		setLB();
 		setDoink();
 		setAutoClamp();
-		setTipper();
 		
 		pros::delay(10);          // Run for 10 ms then update
 	}

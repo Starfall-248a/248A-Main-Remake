@@ -21,7 +21,6 @@ extern MotorGroup driveRight;
 
 extern Motor hooks;
 extern Motor preroller;
-extern MotorGroup intake;
 extern Motor LB;
 
 extern Imu imu;

@@ -1,15 +1,2 @@
-void blueSoloWP();
-void redSoloWP();
-void redHighNeg();
-void blueHighNeg();
-void twoTopRed();
-void twoTopBlue();
-void gRushBlue();
-void gRushRed();
-void dRushRed();
-void dRushBlue();
-void rushClearRed();
-void rushClearBlue();
-void elimBlue();
-void elimRed();
-void skills();
+void blueStandard();
+void redStandard();
