@@ -33,7 +33,7 @@ Optical sorter(6);
 Optical reader(4);
 
 Rotation latRot(-8);
-Rotation angRot(-13);
+Rotation angRot(-14);
 
 adi::Pneumatics Clamp('a', LOW);
 adi::Pneumatics inLift('b', LOW);
@@ -43,7 +43,7 @@ adi::Pneumatics tipper('f', LOW);
 // drivetrain settings
 Drivetrain drivetrain(&driveLeft, // left motor group
                               &driveRight, // right motor group
-                              11.822028, // 10.6725 inch track width
+                              11.5, // 10.6725 inch track width
                               lemlib::Omniwheel::NEW_275, // using new 2.75" omnis
                               600, // drivetrain rpm is 450
                               2 // horizontal drift is 2

@@ -4,11 +4,7 @@
 #include "pros/misc.hpp"
 #include "pros/rtos.hpp"
 
-int wallMech = 0;
-static bool toggle{false};
 static bool inLifter{false};
-bool toggleSorter{true};
-int startTime;
 
 void setIntakes() {
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
